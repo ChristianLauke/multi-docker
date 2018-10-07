@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ChristianLauke/react-test -f ./client/Dockerfile.dev ./client
+
+# When Exitcode <> 0 ==> Travic CI will asume a failure
+script:
+  - docker run ChristianLauke/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t ChristianLauke/multi-docker-client ./client
+  - docker build -t ChristianLauke/multi-docker-nginx ./nginx
+  - docker build -t ChristianLauke/multi-docker-server ./server
+  - docker build -t ChristianLauke/multi-docker-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin  
+  # Take those images and push them to docker hub
+  - docker push ChristianLauke/multi-docker-client
+  - docker push ChristianLauke/multi-docker-nginx
+  - docker push ChristianLauke/multi-docker-server
+  - docker push ChristianLauke/multi-docker-worker
