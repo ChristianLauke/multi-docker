@@ -10,14 +10,14 @@ script:
   - docker run ChristianLauke/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ChristianLauke/multi-docker-client ./client
-  - docker build -t ChristianLauke/multi-docker-nginx ./nginx
-  - docker build -t ChristianLauke/multi-docker-server ./server
-  - docker build -t ChristianLauke/multi-docker-worker ./worker
+  - docker build -t christianlauke/multi-docker-client ./client
+  - docker build -t christianlauke/multi-docker-nginx ./nginx
+  - docker build -t christianlauke/multi-docker-server ./server
+  - docker build -t christianlauke/multi-docker-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin  
   # Take those images and push them to docker hub
-  - docker push ChristianLauke/multi-docker-client
-  - docker push ChristianLauke/multi-docker-nginx
-  - docker push ChristianLauke/multi-docker-server
-  - docker push ChristianLauke/multi-docker-worker
+  - docker push christianlauke/multi-docker-client
+  - docker push christianlauke/multi-docker-nginx
+  - docker push christianlauke/multi-docker-server
+  - docker push christianlauke/multi-docker-worker
