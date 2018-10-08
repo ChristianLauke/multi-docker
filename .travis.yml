@@ -10,10 +10,10 @@ script:
   - docker run christianlauke/react-test npm test -- --coverage
 
 # before_deploy:
-# - openssl aes-256-cbc -K $encrypted_<...>_key -iv $encrypted_<...>_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
-# - eval "$(ssh-agent -s)"
-# - chmod 600 /tmp/deploy_rsa
-# - ssh-add /tmp/deploy_rsa
+ - $GITHUB_SSH >/tmp/deploy_rsa
+ - eval "$(ssh-agent -s)"
+ - chmod 600 /tmp/deploy_rsa
+ - ssh-add /tmp/deploy_rsa
 
 after_success:
   - docker build -t christianlauke/multi-docker-client ./client
