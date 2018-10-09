@@ -2,9 +2,9 @@ version: '3'
 services:
   postgres:
 #    image: 'zsoltm/postgresql-armhf'
-    image: 'postgres:alpine'
+    image: 'postgres'
   redis:
-    image: 'redis:alpine'
+    image: 'redis'
   worker:
     environment:
       - REDIS_HOST=redis
