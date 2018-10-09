@@ -29,7 +29,7 @@ deploy:
   env: multi-docker-env
   bucket_name: elasticbeanstalk-eu-central-1-779881880133
   bucket_path: docker-multi
-  on
+  on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: 
