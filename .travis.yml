@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t christianlauke/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t clauke/react-test -f ./client/Dockerfile.dev ./client
 
 # When Exitcode <> 0 ==> Travic CI will asume a failure
 script:
-  - docker run christianlauke/react-test npm test -- --coverage
+  - docker run clauke/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t christianlauke/multi-docker-client ./client
-  - docker build -t christianlauke/multi-docker-nginx ./nginx
-  - docker build -t christianlauke/multi-docker-server ./server
-  - docker build -t christianlauke/multi-docker-worker ./worker
+  - docker build -t clauke/multi-docker-client ./client
+  - docker build -t clauke/multi-docker-nginx ./nginx
+  - docker build -t clauke/multi-docker-server ./server
+  - docker build -t clauke/multi-docker-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin  
   # Take those images and push them to docker hub
-  - docker push christianlauke/multi-docker-client
-  - docker push christianlauke/multi-docker-nginx
-  - docker push christianlauke/multi-docker-server
-  - docker push christianlauke/multi-docker-worker
+  - docker push clauke/multi-docker-client
+  - docker push clauke/multi-docker-nginx
+  - docker push clauke/multi-docker-server
+  - docker push clauke/multi-docker-worker
