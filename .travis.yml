@@ -22,6 +22,7 @@ after_success:
   - docker push clauke/multi-docker-server
   - docker push clauke/multi-docker-worker
 
+# Cleaned out Amazon AWS for saving money
 #deploy: 
 #  provider: elasticbeanstalk
 #  region: eu-central-1
