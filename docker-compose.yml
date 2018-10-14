@@ -1,8 +1,8 @@
 version: '3'
 services:
   postgres:
-#    image: 'zsoltm/postgresql-armhf'
-    image: 'postgres'
+    image: 'zsoltm/postgresql-armhf'
+#    image: 'postgres'
   redis:
     image: 'redis'
   worker:

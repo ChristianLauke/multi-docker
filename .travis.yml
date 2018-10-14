@@ -5,7 +5,6 @@ services:
 before_install:
   - docker build -t clauke/react-test -f ./client/Dockerfile.dev ./client
 
-# When Exitcode <> 0 ==> Travic CI will asume a failure
 script:
   - docker run clauke/react-test npm test -- --coverage
 
@@ -15,7 +14,7 @@ after_success:
   - docker build -t clauke/multi-docker-server ./server
   - docker build -t clauke/multi-docker-worker ./worker
   # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin  
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push clauke/multi-docker-client
   - docker push clauke/multi-docker-nginx
